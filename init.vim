@@ -55,6 +55,7 @@ nnoremap <Leader>6 6gt
 nnoremap <Leader>7 7gt
 nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
+nnoremap <Leader>q :tab sp<CR>
 highlight ColorColumn ctermbg=gray
 set colorcolumn=80
 set tags+=./jstags;
