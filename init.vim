@@ -59,7 +59,7 @@ nnoremap <Leader>q :tab sp<CR>
 highlight ColorColumn ctermbg=gray
 set colorcolumn=80
 set tags+=./jstags;
-iabbrev pudb import pudb; pudb.set_trace()
+iabbrev pudb import pudb; pudb.set_trace() # NOQA
 iabbrev <d <div class='%'></div><Esc>F%s<c-o>:call getchar()<CR>
 iabbrev <s <div style='%'></div><Esc>F%s<c-o>:call getchar()<CR>
 iabbrev frim from % import <Esc>F%s<c-o>:call getchar()<CR>
