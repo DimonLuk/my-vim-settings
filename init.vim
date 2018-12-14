@@ -18,11 +18,14 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 call plug#end()
+function GetFilepath()
+  return @%
+endfunction
 let g:lightline = {
       \   'colorscheme': 'seoul256',
       \   'active': {
       \     'left': [['mode', 'paste'],
-      \              ['readonly', 'filename', 'modified']
+      \              ['readonly', 'filepath', 'modified']
       \             ],
       \     'right': [['lineinfo'],
       \              ['percent'],
@@ -30,7 +33,8 @@ let g:lightline = {
       \     ]
       \   },
       \   'component_function': {
-      \     'gitbranch': 'fugitive#head'
+      \     'gitbranch': 'fugitive#head',
+      \     'filepath': 'GetFilepath'
       \   }
       \ }
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
@@ -60,6 +64,7 @@ highlight ColorColumn ctermbg=gray
 set colorcolumn=80
 set tags+=./jstags;
 iabbrev pudb import pudb; pudb.set_trace() # NOQA
+iabbrev tleep import time; time.sleep(1000) # NOQA
 iabbrev <d <div class='%'></div><Esc>F%s<c-o>:call getchar()<CR>
 iabbrev <s <div style='%'></div><Esc>F%s<c-o>:call getchar()<CR>
 iabbrev frim from % import <Esc>F%s<c-o>:call getchar()<CR>
