@@ -47,16 +47,30 @@ set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
 set tags=tags;
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
-map <C-n> :NERDTreeToggle<CR>
-map <C-f> :NERDTreeFind<CR>
-map <C-[> :FZF<CR>
-map <C-q> :tab sp<CR>
-map <C-c> :vsp<CR>
-map <C-h> :History<CR>
-map <space> viw
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-[> :FZF<CR>
+nnoremap <C-q> :tab sp<CR>
+nnoremap <C-c> :vsp<CR>
+nnoremap <C-h> :History<CR>
+nnoremap <space> viw
 nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
-nnoremap j gj
-nnoremap k gk
+nnoremap j <nop>
+nnoremap k <nop>
+nnoremap l <nop>
+nnoremap h <nop>
+inoremap jk <esc> 
+inoremap <esc> <nop>
+inoremap <C-d> <esc>ddi
+nnoremap <Leader>pw :w<cr><c-w>j:q<cr>
+nnoremap <Leader>w :w<cr>
+nnoremap <Leader>k gUl
+nnoremap <Leader>j gul
+nnoremap <Leader>U viwgU
+nnoremap <Leader>u viwgu
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+nnoremap \d ddO
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
