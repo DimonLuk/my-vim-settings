@@ -17,10 +17,16 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
+Plug 'mattn/emmet-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 function GetFilepath()
   return @%
 endfunction
+syntax enable
+set background=dark
+colorscheme solarized
 let g:lightline = {
       \   'colorscheme': 'seoul256',
       \   'active': {
@@ -71,6 +77,6 @@ iabbrev <s <div style='%'></div><Esc>F%s<c-o>:call getchar()<CR>
 iabbrev frim from % import <Esc>F%s<c-o>:call getchar()<CR>
 set relativenumber
 set cursorcolumn
-hi CursorColumn ctermbg=gray
+hi CursorColumn ctermbg=24
 set cursorline
-hi CursorLine ctermbg=gray
+hi CursorLine ctermbg=24
