@@ -61,6 +61,9 @@ nnoremap l <nop>
 nnoremap h <nop>
 inoremap jk <esc> 
 inoremap <esc> <nop>
+vnoremap <esc> <nop>
+nnoremap <esc> <nop>
+nnoremap <Leader>e :/^$<cr>
 inoremap <C-d> <esc>ddi
 nnoremap <Leader>pw :w<cr><c-w>j:q<cr>
 nnoremap <Leader>w :w<cr>
@@ -98,11 +101,14 @@ autocmd FileType javascript nnoremap <Leader>c I// <esc>
 autocmd FileType javascript :iabbrev iff if()<left>
 autocmd FileType javascript :iabbrev forr for()<left>
 autocmd FileType javascript :iabbrev frim import from <left><left><left><left><left><left>
+autocmd FileType javascript :iabbrev pudb debugger;<esc>
 autocmd FileType vue nnoremap <Leader>c I// <esc>
 autocmd FileType vue :iabbrev iff if()<left>
 autocmd FileType vue :iabbrev forr for()<left>
 autocmd FileType vue :iabbrev frim import from <left><left><left><left><left><left>
+autocmd FileType vue :iabbrev pudb debugger;<esc>
 autocmd FileType python nnoremap <Leader>c I# <esc>
 autocmd FileType python :iabbrev iff if:<left>
 autocmd FileType python :iabbrev forr forin:<left><left><left>
 autocmd FileType python :iabbrev frim from import <left><left><left><left><left><left><left><left>
+autocmd FileType python :iabbrev pudb import pudb; pudb.set_trace() # NOQA;
