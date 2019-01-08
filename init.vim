@@ -94,3 +94,15 @@ set cursorcolumn
 hi CursorColumn ctermbg=24
 set cursorline
 hi CursorLine ctermbg=24
+autocmd FileType javascript nnoremap <Leader>c I// <esc>
+autocmd FileType javascript :iabbrev iff if()<left>
+autocmd FileType javascript :iabbrev forr for()<left>
+autocmd FileType javascript :iabbrev frim import from <left><left><left><left><left><left>
+autocmd FileType vue nnoremap <Leader>c I// <esc>
+autocmd FileType vue :iabbrev iff if()<left>
+autocmd FileType vue :iabbrev forr for()<left>
+autocmd FileType vue :iabbrev frim import from <left><left><left><left><left><left>
+autocmd FileType python nnoremap <Leader>c I# <esc>
+autocmd FileType python :iabbrev iff if:<left>
+autocmd FileType python :iabbrev forr forin:<left><left><left>
+autocmd FileType python :iabbrev frim from import <left><left><left><left><left><left><left><left>
