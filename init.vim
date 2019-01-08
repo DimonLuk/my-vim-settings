@@ -61,7 +61,6 @@ nnoremap l <nop>
 nnoremap h <nop>
 inoremap jk <esc> 
 inoremap <esc> <nop>
-vnoremap <esc> <nop>
 nnoremap <esc> <nop>
 nnoremap <Leader>e :/^$<cr>
 inoremap <C-d> <esc>ddi
