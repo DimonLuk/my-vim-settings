@@ -55,24 +55,22 @@ nnoremap <C-c> :vsp<CR>
 nnoremap <C-h> :History<CR>
 nnoremap <space> viw
 nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
-nnoremap j <nop>
-nnoremap k <nop>
-nnoremap l <nop>
-nnoremap h <nop>
+nnoremap j gj
+nnoremap k gk
 inoremap jk <esc> 
 inoremap <esc> <nop>
-nnoremap <esc> <nop>
-nnoremap <Leader>e :/^$<cr>
-inoremap <C-d> <esc>ddi
-nnoremap <Leader>pw :w<cr><c-w>j:q<cr>
-nnoremap <Leader>w :w<cr>
+nnoremap <Leader>oo o<esc>kO<esc>j
+nnoremap <Leader>o o<esc>k
+nnoremap <Leader>O O<esc>j
+inoremap <C-d> <esc>cc
+nnoremap <Leader>w :w<cr><c-w>j:q<cr>
 nnoremap <Leader>k gUl
 nnoremap <Leader>j gul
 nnoremap <Leader>U viwgU
 nnoremap <Leader>u viwgu
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
-nnoremap \d ddO
+nnoremap <Leader>d ddO
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
 nnoremap <Leader>3 3gt
@@ -96,18 +94,30 @@ set cursorcolumn
 hi CursorColumn ctermbg=24
 set cursorline
 hi CursorLine ctermbg=24
-autocmd FileType javascript nnoremap <Leader>c I// <esc>
-autocmd FileType javascript :iabbrev iff if()<left>
-autocmd FileType javascript :iabbrev forr for()<left>
-autocmd FileType javascript :iabbrev frim import from <left><left><left><left><left><left>
-autocmd FileType javascript :iabbrev pudb debugger;<esc>
-autocmd FileType vue nnoremap <Leader>c I// <esc>
-autocmd FileType vue :iabbrev iff if()<left>
-autocmd FileType vue :iabbrev forr for()<left>
-autocmd FileType vue :iabbrev frim import from <left><left><left><left><left><left>
-autocmd FileType vue :iabbrev pudb debugger;<esc>
-autocmd FileType python nnoremap <Leader>c I# <esc>
-autocmd FileType python :iabbrev iff if:<left>
-autocmd FileType python :iabbrev forr forin:<left><left><left>
-autocmd FileType python :iabbrev frim from import <left><left><left><left><left><left><left><left>
-autocmd FileType python :iabbrev pudb import pudb; pudb.set_trace() # NOQA;
+
+augroup javascript_config
+  autocmd!
+  autocmd FileType javascript nnoremap <buffer><Leader>c I// <esc>
+  autocmd FileType javascript :iabbrev iff if()<left>
+  autocmd FileType javascript :iabbrev forr for()<left>
+  autocmd FileType javascript :iabbrev frim import from <left><left><left><left><left><left>
+  autocmd FileType javascript :iabbrev pudb debugger;<esc>
+augroup END
+
+augroup vue_config
+  autocmd!
+  autocmd FileType vue nnoremap <buffer><Leader>c I// <esc>
+  autocmd FileType vue :iabbrev iff if()<left>
+  autocmd FileType vue :iabbrev forr for()<left>
+  autocmd FileType vue :iabbrev frim import from <left><left><left><left><left><left>
+  autocmd FileType vue :iabbrev pudb debugger;<esc>
+augroup END
+
+augroup python_config
+  autocmd!
+  autocmd FileType python nnoremap <buffer><Leader>c I# <esc>
+  autocmd FileType python :iabbrev iff if:<left>
+  autocmd FileType python :iabbrev forr forin:<left><left><left>
+  autocmd FileType python :iabbrev frim from import <left><left><left><left><left><left><left><left>
+  autocmd FileType python :iabbrev pudb import pudb; pudb.set_trace() # NOQA;
+augroup END
