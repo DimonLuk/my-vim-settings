@@ -47,6 +47,7 @@ map <C-[> :FZF<CR>
 map <C-q> :tab sp<CR>
 map <C-c> :vsp<CR>
 map <C-h> :History<CR>
+map <space> viw
 nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
 nnoremap j gj
 nnoremap k gk
