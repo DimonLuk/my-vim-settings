@@ -103,8 +103,8 @@ set cursorcolumn
 hi CursorColumn ctermbg=24
 set cursorline
 hi CursorLine ctermbg=24
-setlocal foldmethod=indent
-setlocal foldignore=
+set foldmethod=indent
+set foldignore=
 
 augroup general_staff
   autocmd!
