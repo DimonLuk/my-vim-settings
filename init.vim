@@ -57,8 +57,11 @@ nnoremap <space> viw
 nnoremap / /\v
 nnoremap ? ?\v
 nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
-nnoremap j gj
-nnoremap k gk
+nnoremap j <nop>
+nnoremap k <nop>
+nnoremap h <nop>
+nnoremap l <nop>
+nnoremap <Leader>l mq/\v^$<cr>
 nnoremap <Leader>s mq:%s/\v(\s+)$//g<cr>`q
 nnoremap <Leader>; mqA;<esc>`q
 nnoremap <Leader>: mqA:<esc>`q
