@@ -47,6 +47,9 @@ set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
 set tags=tags;
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
+" toggle candidate
+nnoremap <Leader>W :W<cr>
+" toggle candidate ends
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 nnoremap <C-[> :FZF<CR>
