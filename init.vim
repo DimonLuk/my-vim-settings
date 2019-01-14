@@ -22,7 +22,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 call plug#end()
 function GetFilepath()
-return @%
+  return expand("%:p")
 endfunction
 syntax enable
 set background=dark
@@ -84,7 +84,7 @@ nnoremap <Leader>k gUl
 nnoremap <Leader>j gul
 nnoremap <Leader>U viwgU
 nnoremap <Leader>u viwgu
-nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr><c-w>l:q<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 nnoremap <Leader>d ddO
 nnoremap <Leader>1 1gt
@@ -112,6 +112,7 @@ hi CursorLine ctermbg=24
 set foldmethod=indent
 set foldignore=
 
+
 augroup general_staff
   autocmd!
   autocmd FileType javascript,vue,python autocmd BufWritePre <buffer> execute 'normal! mq'|execute '%s/\v(\s+)$//e'|execute 'normal! `q'
@@ -137,6 +138,13 @@ augroup END
 
 augroup python_config
   autocmd!
+  function! RunPython()
+    let filepath = expand("%:p")
+    botright new
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    execute 'read !python '.filepath
+    execute 'normal! ggdd'
+  endfunction
   autocmd FileType python nnoremap <buffer><Leader>c I# <esc>
   autocmd FileType python :iabbrev <buffer> iff if:<left>
   autocmd FileType python :iabbrev <buffer> forr forin:<left><left><left>
@@ -144,4 +152,5 @@ augroup python_config
   autocmd FileType python :iabbrev <buffer> pudb import pudb; pudb.set_trace() # NOQA
   autocmd FileType python setlocal colorcolumn=80
   autocmd Filetype python nnoremap <buffer><Leader>OO kkO<cr><cr>
+  autocmd FileType python nnoremap <buffer><Leader>g :call RunPython()<cr>
 augroup END
