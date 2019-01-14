@@ -24,6 +24,28 @@ call plug#end()
 function! GetFilepath()
   return expand("%:p")
 endfunction
+function! s:ToggleSnakeAndCamelCase(type)
+  let unnamed_register = @@
+  let yank_register = @0
+  let camel_case = '\v(\u)'
+  let snake_case = '\v_(\l)'
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  if @@ =~? camel_case
+    let @@ = substitute(@@, camel_case, '_\l\1', "ge")
+  elseif @@ =~? snake_case
+    let @@ = substitute(@@, snake_case, '\u\1', "ge")
+  endif
+  normal! gvp
+
+  let @@ = unnamed_register
+  let @0 = yank_register
+endfunction
 function! s:GrepOperator(type)
   let unnamed_register = @@
   let yank_register = @0
@@ -89,6 +111,8 @@ set tags=tags;
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
 " toggle candidate
+nnoremap <Leader>cc :set operatorfunc=<SID>ToggleSnakeAndCamelCase<cr>g@
+vnoremap <Leader>cc :<c-u>call <SID>ToggleSnakeAndCamelCase(visualmode())<cr>
 nnoremap <Leader>t :call <SID>ToggleBoolean()<cr>
 nnoremap <Leader>W :W<cr>
 " toggle candidate ends
