@@ -26,6 +26,7 @@ function! GetFilepath()
 endfunction
 function! s:GrepOperator(type)
   let unnamed_register = @@
+  let yank_register = @0
   if a:type ==# 'v'
     normal! `<v`>y
   elseif a:type ==# 'char'
@@ -38,6 +39,31 @@ function! s:GrepOperator(type)
   copen
 
   let @@ = unnamed_register
+  let @0 = yank_register
+endfunction
+function! s:ToggleBoolean()
+  let saved_register = @@
+  let yank_register = @0
+  normal! yiw
+  if @@ ==# "true"
+    normal! diw
+    let @@ = "false"
+    normal! P
+  elseif @@ ==# "false"
+    normal! diw
+    let @@ = "true"
+    normal! P
+  elseif @@ ==# "True"
+    normal! diw
+    let @@ = "False"
+    normal! P
+  elseif @@ ==# "False"
+    normal! diw
+    let @@ = "True"
+    normal! P
+  endif
+  let @@ = saved_register
+  let @0 = yank_register
 endfunction
 syntax enable
 set background=dark
@@ -63,6 +89,7 @@ set tags=tags;
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
 " toggle candidate
+nnoremap <Leader>t :call <SID>ToggleBoolean()<cr>
 nnoremap <Leader>W :W<cr>
 " toggle candidate ends
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -155,7 +182,7 @@ augroup END
 
 augroup python_config
   autocmd!
-  function! RunPython()
+  function! s:RunPython()
     let filepath = expand("%:p")
     botright new
     setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
@@ -169,5 +196,5 @@ augroup python_config
   autocmd FileType python :iabbrev <buffer> pudb import pudb; pudb.set_trace() # NOQA
   autocmd FileType python setlocal colorcolumn=80
   autocmd Filetype python nnoremap <buffer><Leader>OO kkO<cr><cr>
-  autocmd FileType python nnoremap <buffer><Leader>g :call RunPython()<cr>
+  autocmd FileType python nnoremap <buffer><Leader>g :call <SID>RunPython()<cr>
 augroup END
