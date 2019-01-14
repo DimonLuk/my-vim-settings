@@ -21,7 +21,7 @@ Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 call plug#end()
-function GetFilepath()
+function! GetFilepath()
   return expand("%:p")
 endfunction
 syntax enable
