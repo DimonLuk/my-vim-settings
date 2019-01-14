@@ -24,6 +24,21 @@ call plug#end()
 function! GetFilepath()
   return expand("%:p")
 endfunction
+function! s:GrepOperator(type)
+  let unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+
+  silent execute "grep! -R ".shellescape(@@)." ."
+  copen
+
+  let @@ = unnamed_register
+endfunction
 syntax enable
 set background=dark
 colorscheme solarized
@@ -97,6 +112,8 @@ nnoremap <Leader>7 7gt
 nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
 nnoremap <Leader>q :tab sp<CR>
+nnoremap <Leader>f :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap <Leader>f :<c-u>call <SID>GrepOperator(visualmode())<cr>
 highlight ColorColumn ctermbg=gray
 set tags+=./jstags;
 iabbrev pudb import pudb; pudb.set_trace() # NOQA
