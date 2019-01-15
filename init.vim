@@ -66,24 +66,17 @@ endfunction
 function! s:ToggleBoolean()
   let saved_register = @@
   let yank_register = @0
-  normal! yiw
+  normal! mqyiw
   if @@ ==# "true"
-    normal! diw
     let @@ = "false"
-    normal! P
   elseif @@ ==# "false"
-    normal! diw
     let @@ = "true"
-    normal! P
   elseif @@ ==# "True"
-    normal! diw
     let @@ = "False"
-    normal! P
   elseif @@ ==# "False"
-    normal! diw
     let @@ = "True"
-    normal! P
   endif
+  normal! `[v`]p`q
   let @@ = saved_register
   let @0 = yank_register
 endfunction
