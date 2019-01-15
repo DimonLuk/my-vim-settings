@@ -206,6 +206,13 @@ augroup python_config
     execute 'read !python '.filepath
     execute 'normal! ggdd'
   endfunction
+  function! s:RunPyTest()
+    let filepath = expand("%:p")
+    botright new
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    execute 'read !pytest '.filepath
+    execute 'normal! ggdd'
+  endfunction
   autocmd FileType python nnoremap <buffer><Leader>c I# <esc>
   autocmd FileType python :iabbrev <buffer> iff if:<left>
   autocmd FileType python :iabbrev <buffer> forr forin:<left><left><left>
@@ -213,5 +220,6 @@ augroup python_config
   autocmd FileType python :iabbrev <buffer> pudb import pudb; pudb.set_trace() # NOQA
   autocmd FileType python setlocal colorcolumn=80
   autocmd Filetype python nnoremap <buffer><Leader>OO kkO<cr><cr>
-  autocmd FileType python nnoremap <buffer><Leader>g :call <SID>RunPython()<cr>
+  autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
+  autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
 augroup END
