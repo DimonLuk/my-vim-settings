@@ -189,7 +189,7 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> frim import from <left><left><left><left><left><left>
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> pudb debugger;<esc>
   autocmd FileType javascript,vue,javascript.jsx echo "Hello"
-  autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' 2>/dev/null -f jstags . &
+  autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' 2>/dev/null -f jstags . &
 augroup END
 
 augroup python_config
@@ -217,5 +217,5 @@ augroup python_config
   autocmd Filetype python nnoremap <buffer><Leader>OO kkO<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
-  autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' -f pytags 2>/dev/null . &
+  autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64' --exclude='venv' -f pytags 2>/dev/null . &
 augroup END
