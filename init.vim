@@ -222,4 +222,6 @@ augroup python_config
   autocmd Filetype python nnoremap <buffer><Leader>OO kkO<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
+  autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude=node_modules --exclude=.jsx --exclude=.js --exclude=dist --exclude=static --exclude=__pycache__ --exclude=.pyc --exclude=.html --exclude=.css --exclude=~build -f pytags 2>/dev/null .
+  autocmd FileType python set tags +=./pytags
 augroup END
