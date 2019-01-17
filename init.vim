@@ -160,6 +160,7 @@ nnoremap <Leader>f :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <Leader>f :<c-u>call <SID>GrepOperator(visualmode())<cr>
 highlight ColorColumn ctermbg=gray
 set tags+=./jstags;
+set tags+=./pytags;
 iabbrev pudb import pudb; pudb.set_trace() # NOQA
 iabbrev tleep import time; time.sleep(1000) # NOQA
 iabbrev <d <div class='%'></div><Esc>F%s<c-o>:call getchar()<CR>
@@ -172,29 +173,23 @@ set cursorline
 hi CursorLine ctermbg=24
 set foldmethod=indent
 set foldignore=
+let g:jsx_ext_required = 0
 
 
 augroup general_staff
   autocmd!
-  autocmd FileType javascript,vue,python autocmd BufWritePre <buffer> execute 'normal! mq'|execute '%s/\v(\s+)$//e'|execute 'normal! `q'
+  autocmd FileType javascript,javascript.jsx,vue,python autocmd BufWritePre <buffer> execute 'normal! mq'|execute '%s/\v(\s+)$//e'|execute 'normal! `q'
 augroup END
 
 augroup javascript_config
   autocmd!
-  autocmd FileType javascript nnoremap <buffer><Leader>c I// <esc>
-  autocmd FileType javascript :iabbrev <buffer> iff if()<left>
-  autocmd FileType javascript :iabbrev <buffer> forr for()<left>
-  autocmd FileType javascript :iabbrev <buffer> frim import from <left><left><left><left><left><left>
-  autocmd FileType javascript :iabbrev <buffer> pudb debugger;<esc>
-augroup END
-
-augroup vue_config
-  autocmd!
-  autocmd FileType vue nnoremap <buffer><Leader>c I// <esc>
-  autocmd FileType vue :iabbrev <buffer> iff if()<left>
-  autocmd FileType vue :iabbrev <buffer> forr for()<left>
-  autocmd FileType vue :iabbrev <buffer> frim import from <left><left><left><left><left><left>
-  autocmd FileType vue :iabbrev <buffer> pudb debugger;<esc>
+  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>c I// <esc>
+  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> iff if()<left>
+  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> forr for()<left>
+  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> frim import from <left><left><left><left><left><left>
+  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> pudb debugger;<esc>
+  autocmd FileType javascript,vue,javascript.jsx echo "Hello"
+  autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' 2>/dev/null -f jstags . &
 augroup END
 
 augroup python_config
@@ -222,6 +217,5 @@ augroup python_config
   autocmd Filetype python nnoremap <buffer><Leader>OO kkO<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
-  autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude=node_modules --exclude=.jsx --exclude=.js --exclude=dist --exclude=static --exclude=__pycache__ --exclude=.pyc --exclude=.html --exclude=.css --exclude=~build -f pytags 2>/dev/null .
-  autocmd FileType python set tags +=./pytags
+  autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' -f pytags 2>/dev/null . &
 augroup END
