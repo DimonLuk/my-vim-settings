@@ -20,6 +20,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
+Plug 'rhysd/vim-wasm'
 call plug#end()
 function! GetFilepath()
   return expand("%:p")
@@ -188,7 +189,6 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> forr for()<left>
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> frim import from <left><left><left><left><left><left>
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> pudb debugger;<esc>
-  autocmd FileType javascript,vue,javascript.jsx echo "Hello"
   autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' 2>/dev/null -f jstags . &
 augroup END
 
