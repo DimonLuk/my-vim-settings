@@ -184,6 +184,13 @@ augroup END
 
 augroup javascript_config
   autocmd!
+  function! s:RunJest()
+    let filepath = expand("%:p")
+    botright new
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    execute 'read !jest '.filepath
+    execute 'normal! ggdd'
+  endfunction
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>c I// <esc>
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> iff if()<left>
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> forr for()<left>
@@ -192,6 +199,7 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' 2>/dev/null -f jstags . &
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>spa EBi...<esc>
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>spk Ea}<esc>Bi{...<esc>
+  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>gt :call <SID>RunJest()<cr>
 augroup END
 
 augroup python_config
