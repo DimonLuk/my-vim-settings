@@ -10,8 +10,19 @@ function gpof(){
 function gl(){
   git pull origin "$(get_git_branch)"
 }
+function ggbd(){
+  branch="$(get_git_branch)"
+  git checkout master
+  git branch -d "$branch"
+}
+function ggbD(){
+  branch="$(get_git_branch)"
+  git checkout master
+  git branch -D "$branch"
+}
 export EDITOR=nvim
 hash -d v=~/.config/nvim
+hash -d z=~/.zshrc
 alias v=nvim
 alias vz="nvim ~/.zshrc"
 alias vv="nvim ~/.config/nvim/init.vim"
