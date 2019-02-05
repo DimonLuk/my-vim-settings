@@ -1,3 +1,15 @@
+function get_git_branch(){
+  echo "$(git symbolic-ref --short -q HEAD)"
+}
+function gpo(){
+  git push origin "$(get_git_branch)"
+}
+function gpof(){
+  git push --force-with-lease origin "$(get_git_branch)"
+}
+function gl(){
+  git pull origin "$(get_git_branch)"
+}
 export EDITOR=nvim
 hash -d v=~/.config/nvim
 alias v=nvim
@@ -12,6 +24,8 @@ alias f="flask"
 alias fr="flask run"
 alias p="python"
 alias pp="python2.7"
+alias pt="pytest"
+alias ptns="pytest -m 'not(selenium)'"
 alias pv="pipenv"
 alias pvs="pipenv shell"
 alias pvi="pipenv install"
@@ -28,3 +42,4 @@ alias ni="npm install"
 alias yi="yarn" 
 alias y="yarn"
 alias n="npm"
+alias c="clear"
