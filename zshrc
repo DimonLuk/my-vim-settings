@@ -1,13 +1,13 @@
 function get_git_branch(){
   echo "$(git symbolic-ref --short -q HEAD)"
 }
-function gpo(){
+function ggpo(){
   git push origin "$(get_git_branch)"
 }
-function gpof(){
+function ggpof(){
   git push --force-with-lease origin "$(get_git_branch)"
 }
-function gl(){
+function ggl(){
   git pull origin "$(get_git_branch)"
 }
 function ggbd(){
