@@ -95,6 +95,15 @@ let g:lightline = {
   \              ['gitbranch', 'fileformat', 'filetype', 'fileencoding']
   \     ]
   \   },
+  \   'inactive': {
+  \     'left': [['mode', 'paste'],
+  \              ['readonly', 'filepath', 'modified']
+  \             ],
+  \     'right': [['lineinfo'],
+  \              ['percent'],
+  \              ['gitbranch', 'fileformat', 'filetype', 'fileencoding']
+  \     ]
+  \   },
   \   'component_function': {
   \     'gitbranch': 'fugitive#head',
   \     'filepath': 'GetFilepath'
@@ -139,6 +148,15 @@ nnoremap <Leader>oo o<esc>kO<esc>j
 nnoremap <Leader>o o<esc>k
 nnoremap <Leader>O O<esc>j
 inoremap <C-d> <esc>cc
+inoremap { { % }<esc>F%s
+inoremap } {}<esc>i
+inoremap [ []<esc>i
+inoremap [ []<esc>i
+inoremap ' ''<esc>i
+inoremap " ""<esc>i
+inoremap ` ``<esc>i
+inoremap ( ()<esc>i
+inoremap ) ()<esc>i
 nnoremap <Leader>w :w<cr><c-w>j:q<cr>
 nnoremap <Leader>k gUl
 nnoremap <Leader>j gul
@@ -191,6 +209,9 @@ augroup javascript_config
     execute 'read !jest '.filepath
     execute 'normal! ggdd'
   endfunction
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>< <% /><esc>F%s
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>> <% ><esc>F%xs
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>... { ...% }<esc>F%s
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>c I// <esc>
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> iff if()<left>
   autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> forr for()<left>

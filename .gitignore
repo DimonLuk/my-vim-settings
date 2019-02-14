@@ -1,3 +1,6 @@
 plugged/
 nvim
 .netrwhist
+jstags
+pytags
+tags
