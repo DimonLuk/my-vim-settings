@@ -20,6 +20,28 @@ function ggbD(){
   git checkout master
   git branch -D "$branch"
 }
+function ggrht(){
+  echo "Soft reset of $1 commits"
+  for i in {1.."$1"}
+  do
+    git reset --soft HEAD^
+  done
+}
+function gggo(){
+  git reset --hard HEAD@{"$1"}
+}
+function sshs(){
+  cp ~/.zshrc /tmp/.zshrc &&
+  echo "\n" >> /tmp/.zshrc &&
+  cat ~/.config/nvim/zshrc >> /tmp/.zshrc &&
+  echo "\n" >> /tmp/.zshrc &&
+  echo "\nalias v=\"nvim -u /tmp/.dimonluk_vimrc || vim -u /tmp/.dimonluk_vimrc || vi -u /tmp/.dimonluk_vimrc\"" >> /tmp/.zshrc &&
+  scp /tmp/.zshrc "$1":/tmp/.zshrc &&
+  rm /tmp/.zshrc &&
+  scp ~/.config/nvim/init.vim "$1":/tmp/.dimonluk_vimrc &&
+  ssh -t "$@" "bash --rcfile /tmp/.zshrc ; rm /tmp/.zshrc"
+}
+setopt correct
 export EDITOR=nvim
 hash -d v=~/.config/nvim
 hash -d z=~/.zshrc
@@ -54,3 +76,4 @@ alias yi="yarn"
 alias y="yarn"
 alias n="npm"
 alias c="clear"
+alias sz="source ~/.zshrc"
