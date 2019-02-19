@@ -180,10 +180,8 @@ vnoremap <Leader>f :<c-u>call <SID>GrepOperator(visualmode())<cr>
 highlight ColorColumn ctermbg=gray
 set tags+=./jstags;
 set tags+=./pytags;
-iabbrev pudb import pudb; pudb.set_trace() # NOQA
-iabbrev tleep import time; time.sleep(1000) # NOQA
-iabbrev <d <div class='%'></div><Esc>F%s<c-o>:call getchar()<CR>
-iabbrev <s <div style='%'></div><Esc>F%s<c-o>:call getchar()<CR>
+inoremap pudb import pudb; pudb.set_trace() # NOQA
+inoremap tleep import time; time.sleep(1000) # NOQA
 iabbrev frim from % import <Esc>F%s<c-o>:call getchar()<CR>
 set relativenumber
 set cursorcolumn
