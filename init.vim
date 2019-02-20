@@ -114,6 +114,10 @@ set tags=tags;
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
 " toggle candidate
+nnoremap <C-\>p :buffer #<cr>
+inoremap <C-\>p <esc>:w<cr>:buffer #<cr>
+nnoremap <C-\>l :buffers<cr>
+inoremap <C-\>l <esc>:buffers<cr>
 nnoremap <Leader>cc :set operatorfunc=<SID>ToggleSnakeAndCamelCase<cr>g@
 vnoremap <Leader>cc :<c-u>call <SID>ToggleSnakeAndCamelCase(visualmode())<cr>
 nnoremap <Leader>t :call <SID>ToggleBoolean()<cr>
@@ -129,10 +133,6 @@ nnoremap <space> viw
 nnoremap / /\v
 nnoremap ? ?\v
 nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
-nnoremap j <nop>
-nnoremap k <nop>
-nnoremap h <nop>
-nnoremap l <nop>
 nnoremap <Leader>l mq/\v^$<cr>
 nnoremap <Leader>s mq:%s/\v(\s+)$//g<cr>`q
 nnoremap <Leader>; mqA;<esc>`q

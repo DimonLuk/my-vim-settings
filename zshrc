@@ -7,6 +7,9 @@ function ggpo(){
 function ggpof(){
   git push --force-with-lease origin "$(get_git_branch)"
 }
+function ggg(){
+  git add --all && git commit --amend --no-edit && git push --force-with-lease origin "$(get_git_branch)"
+}
 function ggl(){
   git pull origin "$(get_git_branch)"
 }
@@ -46,7 +49,7 @@ export EDITOR=nvim
 hash -d v=~/.config/nvim
 hash -d z=~/.zshrc
 alias v=nvim
-alias vz="nvim ~/.zshrc"
+alias vz="nvim zshrc"
 alias vv="nvim ~/.config/nvim/init.vim"
 alias djr="python manage.py runserver"
 alias djmm="python manage.py makemigrations"
