@@ -132,6 +132,8 @@ nnoremap <C-h> :History<CR>
 nnoremap <space> viw
 nnoremap / /\v
 nnoremap ? ?\v
+nnoremap j jg
+nnoremap k gk
 nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
 nnoremap <Leader>l mq/\v^$<cr>
 nnoremap <Leader>s mq:%s/\v(\s+)$//g<cr>`q
@@ -144,14 +146,14 @@ nnoremap <Leader>x mq$x`q
 nnoremap <Leader>uu mqu`q
 inoremap jk <esc>
 inoremap <esc> <nop>
-nnoremap <Leader>oo o<esc>kO<esc>j
-nnoremap <Leader>o o<esc>k
-nnoremap <Leader>O O<esc>j
+nnoremap <Leader>ooo mqo<esc>kO<esc>`q
+nnoremap <Leader>o mqo<esc>`q
+nnoremap <Leader>O mqO<esc>`q
 inoremap <C-d> <esc>cc
 inoremap { { % }<esc>F%s
 inoremap } {}<esc>i
 inoremap [ []<esc>i
-inoremap [ []<esc>i
+inoremap ] []<esc>i
 inoremap ' ''<esc>i
 inoremap " ""<esc>i
 inoremap ` ``<esc>i
@@ -180,8 +182,6 @@ vnoremap <Leader>f :<c-u>call <SID>GrepOperator(visualmode())<cr>
 highlight ColorColumn ctermbg=gray
 set tags+=./jstags;
 set tags+=./pytags;
-inoremap pudb import pudb; pudb.set_trace() # NOQA
-inoremap tleep import time; time.sleep(1000) # NOQA
 iabbrev frim from % import <Esc>F%s<c-o>:call getchar()<CR>
 set relativenumber
 set cursorcolumn
@@ -211,13 +211,14 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>> <% ><esc>F%xs
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>... { ...% }<esc>F%s
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>c I// <esc>
-  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> iff if()<left>
-  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> forr for()<left>
-  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> frim import from <left><left><left><left><left><left>
-  autocmd FileType javascript,vue,javascript.jsx :iabbrev <buffer> pudb debugger;<esc>
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> if if(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> for for(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> frim import % from <esc>F%s
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> pudb debugger;<esc>
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> log console.log();<left><left>
+  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> pudb mqOdebugger;<esc>`q
+  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> log oconsole.log();<esc>hi
   autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' 2>/dev/null -f jstags . &
-  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>spa EBi...<esc>
-  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>spk Ea}<esc>Bi{...<esc>
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>gt :call <SID>RunJest()<cr>
 augroup END
 
@@ -238,15 +239,17 @@ augroup python_config
     execute 'normal! ggdd'
   endfunction
   autocmd FileType python nnoremap <buffer><Leader>c I# <esc>
-  autocmd FileType python :iabbrev <buffer> iff if:<left>
-  autocmd FileType python :iabbrev <buffer> forr forin:<left><left><left>
-  autocmd FileType python :iabbrev <buffer> frim from import <left><left><left><left><left><left><left><left>
-  autocmd FileType python :iabbrev <buffer> pudb import pudb; pudb.set_trace() # NOQA
+  autocmd FileType python inoremap <buffer> if if %:<esc>F%s
+  autocmd FileType python inoremap <buffer> for for % in:<esc>F%s
+  autocmd FileType python inoremap <buffer> frim from % import <esc>F%s
+  autocmd FileType python inoremap <buffer> pudb import pudb; pudb.set_trace() # NOQA<esc>
+  autocmd FileType python inoremap <buffer> tleep import time; time.sleep(1000) # NOQA<esc>
+  autocmd FileType python nnoremap <buffer> pudb mqOimport pudb; pudb.set_trace() # NOQA<esc>`q
+  autocmd FileType python nnoremap <buffer> tleep mqOimport time; time.sleep(1000) # NOQA<esc>`q
   autocmd FileType python setlocal colorcolumn=80
-  autocmd Filetype python nnoremap <buffer><Leader>OO kkO<cr><cr>
+  autocmd Filetype python nnoremap <buffer><Leader>OO O<esc>O<esc>O
+  autocmd Filetype python nnoremap <buffer><Leader>oo o<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
   autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64' --exclude='venv' -f pytags 2>/dev/null . &
-  autocmd FileType python nnoremap <buffer><Leader>spa EBi*<esc>
-  autocmd FileType python nnoremap <buffer><Leader>spk EBi**<esc>
 augroup END
