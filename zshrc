@@ -44,12 +44,35 @@ function sshs(){
   scp ~/.config/nvim/init.vim "$1":/tmp/.dimonluk_vimrc &&
   ssh -t "$@" "bash --rcfile /tmp/.zshrc ; rm /tmp/.zshrc"
 }
+function cpr(){
+  g++ "$1.cpp" -o "$1.out" && ./"$1.out"
+}
+function cprd(){
+  g++ "$1.cpp" -g -o "$1.out" && "gdb $1.out"
+}
+function cprm(){
+  command_=""
+  for file in $@
+    do
+      command_="$command_ $file.cpp"
+    done
+  command_="g++$command_ -o $1.out && ./$1.out" 
+  zsh -c $command_
+}
+function cprmd(){
+  command_=""
+  for file in $@
+    do
+      command_="$command_ $file.cpp"
+    done
+  command_="g++$command_ -g -o $1.out && gdb $1.out" 
+  zsh -c $command_
+}
 setopt correct
 export EDITOR=nvim
 hash -d v=~/.config/nvim
-hash -d z=~/.zshrc
 alias v=nvim
-alias vz="nvim zshrc"
+alias vz="nvim ~/.config/nvim/zshrc"
 alias vv="nvim ~/.config/nvim/init.vim"
 alias djr="python manage.py runserver"
 alias djmm="python manage.py makemigrations"

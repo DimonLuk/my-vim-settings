@@ -132,7 +132,7 @@ nnoremap <C-h> :History<CR>
 nnoremap <space> viw
 nnoremap / /\v
 nnoremap ? ?\v
-nnoremap j jg
+nnoremap j gj
 nnoremap k gk
 nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
 nnoremap <Leader>l mq/\v^$<cr>
@@ -218,7 +218,7 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> log console.log();<left><left>
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> pudb mqOdebugger;<esc>`q
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> log oconsole.log();<esc>hi
-  autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' 2>/dev/null -f jstags . &
+  autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.cpp' --exclude='*.c' --exclude='*.out' --exclude='*.o' 2>/dev/null -f jstags . &
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>gt :call <SID>RunJest()<cr>
 augroup END
 
@@ -251,5 +251,16 @@ augroup python_config
   autocmd Filetype python nnoremap <buffer><Leader>oo o<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
-  autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64' --exclude='venv' -f pytags 2>/dev/null . &
+  autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64' --exclude='venv' --exclude='*.cpp' --exclude='*.c' --exclude='*.out' --exclude='*.o' -f pytags 2>/dev/null . &
+augroup END
+
+augroup cpp_c_config
+  autocmd!
+  autocmd FileType cpp,c nnoremap <buffer><Leader>c I// <esc>
+  autocmd FileType cpp,c inoremap <buffer> if if(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType cpp,c inoremap <buffer> for for(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType cpp,c inoremap <buffer> fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType cpp,c inoremap <buffer> #inc #include 
+  autocmd FileType cpp,c inoremap <buffer> cout cout << % << endl;<esc>F%s
+  autocmd FileType cpp,c autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f tags . &
 augroup END
