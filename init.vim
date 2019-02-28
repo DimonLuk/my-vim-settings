@@ -212,8 +212,8 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>> <% ><esc>F%xs
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>... { ...% }<esc>F%s
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>c I// <esc>
-  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> if if(%)<esc>F%mqA {<esc>o}<esc>`qs
-  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> for for(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>if if(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>for for(%)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> frim import % from <esc>F%s
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> pudb debugger;<esc>
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> log console.log();<left><left>
@@ -240,8 +240,8 @@ augroup python_config
     execute 'normal! ggdd'
   endfunction
   autocmd FileType python nnoremap <buffer><Leader>c I# <esc>
-  autocmd FileType python inoremap <buffer> if if %:<esc>F%s
-  autocmd FileType python inoremap <buffer> for for % in:<esc>F%s
+  autocmd FileType python inoremap <buffer> <Leader>if if %:<esc>F%s
+  autocmd FileType python inoremap <buffer> <Leader>for for % in:<esc>F%s
   autocmd FileType python inoremap <buffer> frim from % import <esc>F%s
   autocmd FileType python inoremap <buffer> pudb import pudb; pudb.set_trace() # NOQA<esc>
   autocmd FileType python inoremap <buffer> tleep import time; time.sleep(1000) # NOQA<esc>
@@ -260,10 +260,11 @@ augroup cpp_c_config
   autocmd FileType cpp,c nnoremap <buffer><Leader>c I// <esc>
   autocmd FileType cpp,c inoremap <buffer> < <><left>
   autocmd FileType cpp,c inoremap <buffer> > <><left>
-  autocmd FileType cpp,c inoremap <buffer> if if(%)<esc>F%mqA {<esc>o}<esc>`qs
-  autocmd FileType cpp,c inoremap <buffer> for for(%)<esc>F%mqA {<esc>o}<esc>`qs
-  autocmd FileType cpp,c inoremap <buffer> fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType cpp,c inoremap <buffer> <Leader>if if(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType cpp,c inoremap <buffer> <Leader>for for(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType cpp,c inoremap <buffer> <Leader>fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType cpp,c inoremap <buffer> #inc #include 
   autocmd FileType cpp,c inoremap <buffer> cout cout << % << endl;<esc>F%s
+  autocmd FileType cpp,c setlocal shiftwidth=4
   autocmd FileType cpp,c autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f tags . &
 augroup END
