@@ -48,25 +48,42 @@ function cpr(){
   g++ "$1.cpp" -o "$1.out" && ./"$1.out"
 }
 function cprd(){
-  g++ "$1.cpp" -g -o "$1.out" && "gdb $1.out"
+  g++ "$1.cpp" -g -o "$1.out" && gdb "$1.out"
 }
-function cprm(){
+function get_build_command(){
   command_=""
   for file in $@
     do
       command_="$command_ $file.cpp"
     done
-  command_="g++$command_ -o $1.out && ./$1.out" 
+  echo $command_
+}
+function cprm(){
+  command_="g++$(get_build_command $@) -o $1.out && ./$1.out" 
   zsh -c $command_
 }
 function cprmd(){
-  command_=""
-  for file in $@
-    do
-      command_="$command_ $file.cpp"
-    done
-  command_="g++$command_ -g -o $1.out && gdb $1.out" 
+  command_="g++$(get_build_command $@) -g -o $1.out && gdb $1.out" 
   zsh -c $command_
+}
+function cmake_build_and_make(){
+  name=""
+  if [ -z "$1" ] && name="main"
+  zsh -c "rm -rf build"
+  zsh -c "mkdir build"
+  current_dir="$(pwd)"
+  echo $current_dir
+  cd build
+  cmake $current_dir && make
+  cd "$current_dir"
+}
+function cmbr(){
+  cmake_build_and_make
+  ./build/"$name"
+}
+function cmbrd(){
+  cmake_build_and_make
+  gdb ./build/"$name"
 }
 setopt correct
 export EDITOR=nvim

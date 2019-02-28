@@ -21,6 +21,7 @@ Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rhysd/vim-wasm'
+Plug 'pboettch/vim-cmake-syntax'
 call plug#end()
 function! GetFilepath()
   return expand("%:p")
@@ -257,6 +258,8 @@ augroup END
 augroup cpp_c_config
   autocmd!
   autocmd FileType cpp,c nnoremap <buffer><Leader>c I// <esc>
+  autocmd FileType cpp,c inoremap <buffer> < <><left>
+  autocmd FileType cpp,c inoremap <buffer> > <><left>
   autocmd FileType cpp,c inoremap <buffer> if if(%)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType cpp,c inoremap <buffer> for for(%)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType cpp,c inoremap <buffer> fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
