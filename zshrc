@@ -85,6 +85,10 @@ function cmbrd(){
   cmake_build_and_make
   gdb ./build/"$name"
 }
+function jbrd(){
+  javac "$1.java"
+  jdb
+}
 setopt correct
 export EDITOR=nvim
 hash -d v=~/.config/nvim

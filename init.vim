@@ -22,7 +22,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rhysd/vim-wasm'
 Plug 'pboettch/vim-cmake-syntax'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'vim-syntastic/syntastic'
 call plug#end()
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 function! GetFilepath()
   return expand("%:p")
 endfunction
@@ -183,6 +193,8 @@ vnoremap <Leader>f :<c-u>call <SID>GrepOperator(visualmode())<cr>
 highlight ColorColumn ctermbg=gray
 set tags+=./jstags;
 set tags+=./pytags;
+set tags+=./ctags;
+set tags+=./javatags;
 iabbrev frim from % import <Esc>F%s<c-o>:call getchar()<CR>
 set relativenumber
 set cursorcolumn
@@ -196,7 +208,7 @@ let g:jsx_ext_required = 0
 
 augroup general_staff
   autocmd!
-  autocmd FileType javascript,javascript.jsx,vue,python autocmd BufWritePre <buffer> execute 'normal! mq'|execute '%s/\v(\s+)$//e'|execute 'normal! `q'
+  autocmd FileType javascript,javascript.jsx,vue,python,c,cpp,java autocmd BufWritePre <buffer> execute 'normal! mq'|execute '%s/\v(\s+)$//e'|execute 'normal! `q'
 augroup END
 
 augroup javascript_config
@@ -266,5 +278,30 @@ augroup cpp_c_config
   autocmd FileType cpp,c inoremap <buffer> #inc #include 
   autocmd FileType cpp,c inoremap <buffer> cout cout << % << endl;<esc>F%s
   autocmd FileType cpp,c setlocal shiftwidth=4
-  autocmd FileType cpp,c autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f tags . &
+  autocmd FileType cpp,c autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f ctags . &
+augroup END
+
+augroup java
+  autocmd!
+  function! s:RunJava()
+    let filepath = expand("%:p")
+    botright new
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    execute 'read !java '.filepath
+    execute 'normal! ggdd'
+  endfunction
+  autocmd FileType java setlocal omnifunc=javacomplete#Complete
+  nmap <F4> <Plug>(JavaComplete-Imports-Add)
+  imap <F4> <Plug>(JavaComplete-Imports-Add)
+  nmap <F5> <Plug>(JavaComplete-Imports-AddMissing)
+  imap <F5> <Plug>(JavaComplete-Imports-AddMissing)
+  nmap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
+  imap <F6> <Plug>(JavaComplete-Imports-RemoveUnused)
+  autocmd FileType java nnoremap <buffer><Leader>c I// <esc>
+  autocmd FileType java nnoremap <buffer><Leader>gg :call <SID>RunJava()<cr>
+  autocmd FileType java inoremap <buffer> <Leader>if if(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType java inoremap <buffer> <Leader>for for(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType java inoremap <buffer> <Leader>fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType java setlocal shiftwidth=4
+  autocmd FileType java autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f javatags . &
 augroup END
