@@ -1,6 +1,12 @@
 function get_git_branch(){
   echo "$(git symbolic-ref --short -q HEAD)"
 }
+function get_previous_git_branch(){
+  echo "$(git reflog | sed -n -e 's/.*from \([a-zA-Z0-9/\-]*\).*/\1/p')" | head -n1
+}
+function ggcp(){
+  git checkout "$(get_previous_git_branch)"
+}
 function ggpo(){
   git push origin "$(get_git_branch)"
 }
