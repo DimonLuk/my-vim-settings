@@ -220,12 +220,13 @@ augroup javascript_config
     execute 'read !jest '.filepath
     execute 'normal! ggdd'
   endfunction
-  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>< <% /><esc>F%s
-  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>> <% ><esc>F%xs
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer><Leader>< <% /><esc>F%s
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer><Leader>> <% ><esc>F%xs
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer>... { ...% }<esc>F%s
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>c I// <esc>
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>if if(%)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>for for(%)<esc>F%mqA {<esc>o}<esc>`qs
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> frim import % from <esc>F%s
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> pudb debugger;<esc>
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> log console.log();<left><left>
@@ -257,8 +258,10 @@ augroup python_config
   autocmd FileType python inoremap <buffer> frim from % import <esc>F%s
   autocmd FileType python inoremap <buffer> pudb import pudb; pudb.set_trace() # NOQA<esc>
   autocmd FileType python inoremap <buffer> tleep import time; time.sleep(1000) # NOQA<esc>
+  autocmd FileType python inoremap <buffer> log print(%)<esc>F%s
   autocmd FileType python nnoremap <buffer> pudb mqOimport pudb; pudb.set_trace() # NOQA<esc>`q
   autocmd FileType python nnoremap <buffer> tleep mqOimport time; time.sleep(1000) # NOQA<esc>`q
+  autocmd FileType python nnoremap <buffer> log oprint(%)<esc>F%s
   autocmd FileType python setlocal colorcolumn=80
   autocmd Filetype python nnoremap <buffer><Leader>OO O<esc>O<esc>O
   autocmd Filetype python nnoremap <buffer><Leader>oo o<cr><cr>
