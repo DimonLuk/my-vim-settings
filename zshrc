@@ -196,3 +196,4 @@ alias tm="tmux"
 alias tml="tmux ls"
 alias dc="docker"
 alias dcc="docker-compose"
+export PATH=/storage/projects/wabt/build:$PATH
