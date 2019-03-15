@@ -229,9 +229,9 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> frim import % from <esc>F%s
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> pudb debugger;<esc>
-  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> log console.log();<left><left>
+  autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>log console.log();<left><left>
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> pudb mqOdebugger;<esc>`q
-  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> log oconsole.log();<esc>hi
+  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> <Leader>log oconsole.log();<esc>hi
   autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.cpp' --exclude='*.c' --exclude='*.out' --exclude='*.o' 2>/dev/null -f jstags . &
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>gt :call <SID>RunJest()<cr>
 augroup END
@@ -258,10 +258,10 @@ augroup python_config
   autocmd FileType python inoremap <buffer> frim from % import <esc>F%s
   autocmd FileType python inoremap <buffer> pudb import pudb; pudb.set_trace() # NOQA<esc>
   autocmd FileType python inoremap <buffer> tleep import time; time.sleep(1000) # NOQA<esc>
-  autocmd FileType python inoremap <buffer> log print(%)<esc>F%s
+  autocmd FileType python inoremap <buffer> <Leader>log print(%)<esc>F%s
   autocmd FileType python nnoremap <buffer> pudb mqOimport pudb; pudb.set_trace() # NOQA<esc>`q
   autocmd FileType python nnoremap <buffer> tleep mqOimport time; time.sleep(1000) # NOQA<esc>`q
-  autocmd FileType python nnoremap <buffer> log oprint(%)<esc>F%s
+  autocmd FileType python nnoremap <buffer> <Leader>log oprint(%)<esc>F%s
   autocmd FileType python setlocal colorcolumn=80
   autocmd Filetype python nnoremap <buffer><Leader>OO O<esc>O<esc>O
   autocmd Filetype python nnoremap <buffer><Leader>oo o<cr><cr>
