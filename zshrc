@@ -1,3 +1,7 @@
+function pcl(){
+  find . -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
+}
+
 function get_git_branch(){
   echo "$(git symbolic-ref --short -q HEAD)"
 }
