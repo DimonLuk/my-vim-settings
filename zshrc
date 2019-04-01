@@ -99,6 +99,64 @@ function jbrd(){
   javac "$1.java"
   jdb
 }
+function tma(){
+  tmux attach -t$1
+}
+function get_docker_compose_command(){
+  if [ -z "$DOCKER_COMPOSE_FILE" ];
+  then
+    echo "docker-compose"
+  else
+    echo "docker-compose -f $DOCKER_COMPOSE_FILE"
+  fi;
+}
+function dcp(){
+  docker ps
+}
+function dcb(){
+  command_=""
+  if [ -z "$DOCKERFILE" ];
+  then
+    command_="docker build"
+  else
+    command_="docker build -f $DOCKERFILE"
+  fi;
+  command_="$command_ -t $1 --no-cache ."
+  zsh -c "$command_"
+}
+function dcr(){
+  docker run "$*"
+}
+function dck(){
+  zsh -c "docker kill $1"
+}
+function dcl(){
+  docker logs "$1"
+}
+function dce(){
+  docker exec -it "$*"
+}
+function dccr(){
+  zsh -c "$(get_docker_compose_command) run $*"
+}
+function dccl(){
+  zsh -c "$(get_docker_compose_command) logs $1"
+}
+function dccu(){
+  zsh -c "$(get_docker_compose_command) up $*"
+}
+function dccud(){
+  zsh -c "$(get_docker_compose_command) up -d $*"
+}
+function dccb(){
+  zsh -c "$(get_docker_compose_command) build $*"
+}
+function dccub(){
+  zsh -c "$(get_docker_compose_command) up --build $*"
+}
+function dccudb(){
+  zsh -c "$(get_docker_compose_command) up -d --build $*"
+}
 setopt correct
 export EDITOR=nvim
 hash -d v=~/.config/nvim
@@ -134,3 +192,7 @@ alias y="yarn"
 alias n="npm"
 alias c="clear"
 alias sz="source ~/.zshrc"
+alias tm="tmux"
+alias tml="tmux ls"
+alias dc="docker"
+alias dcc="docker-compose"
