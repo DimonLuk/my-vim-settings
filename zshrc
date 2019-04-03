@@ -145,6 +145,9 @@ function dccl(){
 function dccu(){
   zsh -c "$(get_docker_compose_command) up $*"
 }
+function dccd(){
+  zsh -c "$(get_docker_compose_command) down $*"
+}
 function dccud(){
   zsh -c "$(get_docker_compose_command) up -d $*"
 }
