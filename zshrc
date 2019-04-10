@@ -125,7 +125,7 @@ function dcb(){
   zsh -c "$command_"
 }
 function dcr(){
-  docker run "$*"
+  docker run -t "$*"
 }
 function dck(){
   zsh -c "docker kill $1"
@@ -134,10 +134,13 @@ function dcl(){
   docker logs "$1"
 }
 function dce(){
-  docker exec -it "$*"
+  docker exec -it "$1" "$2"
 }
 function dccr(){
   zsh -c "$(get_docker_compose_command) run $*"
+}
+function dccs(){
+  zsh -c "$(get_docker_compose_command) stop $*"
 }
 function dccl(){
   zsh -c "$(get_docker_compose_command) logs $1"
