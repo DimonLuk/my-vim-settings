@@ -113,6 +113,12 @@ function get_docker_compose_command(){
 function dcp(){
   docker ps
 }
+function dcil(){
+  docker image ls
+}
+function dcilg(){
+  docker image ls | grep "$1"
+}
 function dcb(){
   command_=""
   if [ -z "$DOCKERFILE" ];
