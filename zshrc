@@ -57,8 +57,14 @@ function sshs(){
 function cpr(){
   g++ "$1.cpp" -o "$1.out" && ./"$1.out"
 }
+function cr(){
+  gcc -o "$1" "$1.c" -lm && ./"$1"
+}
 function cprd(){
   g++ "$1.cpp" -g -o "$1.out" && gdb "$1.out"
+}
+function crd(){
+  gcc -g -o "$1" "$1.c" -lm && gdb "$1"
 }
 function get_build_command(){
   command_=""
@@ -79,7 +85,7 @@ function cprmd(){
 function cmake_build_and_make(){
   name=""
   if [ -z "$1" ] && name="main"
-  zsh -c "rm -rf build"
+  zsh -c "rm -rf **/build"
   zsh -c "mkdir build"
   current_dir="$(pwd)"
   echo $current_dir
