@@ -191,6 +191,8 @@ nnoremap <Leader>9 9gt
 nnoremap <Leader>q :tab sp<CR>
 nnoremap <Leader>f :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <Leader>f :<c-u>call <SID>GrepOperator(visualmode())<cr>
+nnoremap <Leader>-d :let d = getcwd()<cr>
+nnoremap <Leader>-- :execute 'cd' d<cr>
 highlight ColorColumn ctermbg=gray
 set tags+=./jstags;
 set tags+=./pytags;
