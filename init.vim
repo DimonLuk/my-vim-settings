@@ -1,3 +1,5 @@
+let g:black_virtualenv = "~/.config/nvim/plugged/black_venv"
+
 call plug#begin()
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -6,11 +8,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
-Plug 'tell-k/vim-autopep8'
-Plug 'nvie/vim-flake8'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'mileszs/ack.vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
@@ -25,6 +24,7 @@ Plug 'pboettch/vim-cmake-syntax'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'vim-syntastic/syntastic'
 Plug 'abaldwin88/roamer.vim'
+Plug 'python/black'
 call plug#end()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -34,6 +34,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
 function! GetFilepath()
   return expand("%:p")
 endfunction
@@ -265,12 +266,13 @@ augroup python_config
   autocmd FileType python nnoremap <buffer> pudb mqOimport pudb; pudb.set_trace() # NOQA<esc>`q
   autocmd FileType python nnoremap <buffer> tleep mqOimport time; time.sleep(1000) # NOQA<esc>`q
   autocmd FileType python nnoremap <buffer> <Leader>log oprint(%)<esc>F%s
-  autocmd FileType python setlocal colorcolumn=80
+  autocmd FileType python setlocal colorcolumn=89
   autocmd Filetype python nnoremap <buffer><Leader>OO O<esc>O<esc>O
   autocmd Filetype python nnoremap <buffer><Leader>oo o<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
   autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64' --exclude='venv' --exclude='*.cpp' --exclude='*.c' --exclude='*.out' --exclude='*.o' -f pytags 2>/dev/null . &
+  autocmd FileType python autocmd BufWritePre <buffer> execute ':Black'
 augroup END
 
 augroup cpp_c_config
