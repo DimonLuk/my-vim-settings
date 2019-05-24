@@ -25,6 +25,7 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'vim-syntastic/syntastic'
 Plug 'abaldwin88/roamer.vim'
 Plug 'python/black'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 call plug#end()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
