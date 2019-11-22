@@ -1,10 +1,9 @@
 let g:black_virtualenv = "~/.config/nvim/plugged/black_venv"
 
 call plug#begin()
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
@@ -316,3 +315,4 @@ augroup java
   autocmd FileType java setlocal shiftwidth=4
   autocmd FileType java autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f javatags . &
 augroup END
+source ~/.config/nvim/cocc.vim
