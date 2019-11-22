@@ -129,6 +129,7 @@ set tags=tags;
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
 " toggle candidate
+nnoremap <silent> <Leader><space>y :<C-u>CocList -A --normal yank<cr>
 nnoremap <C-\>p :buffer #<cr>
 inoremap <C-\>p <esc>:w<cr>:buffer #<cr>
 nnoremap <C-\>l :buffers<cr>
@@ -238,6 +239,7 @@ augroup javascript_config
   autocmd FileType javascript,vue,javascript.jsx inoremap <buffer> <Leader>log console.log();<left><left>
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> pudb mqOdebugger;<esc>`q
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> <Leader>log oconsole.log();<esc>hi
+  autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer> <Leader>pr :CocCommand prettier.formatFile<CR>
   autocmd FileType javascript,vue,javascript.jsx autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.cpp' --exclude='*.c' --exclude='*.out' --exclude='*.o' 2>/dev/null -f jstags . &
   autocmd FileType javascript,vue,javascript.jsx nnoremap <buffer><Leader>gt :call <SID>RunJest()<cr>
 augroup END

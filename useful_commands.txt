@@ -1,0 +1,10 @@
+:CocInstall coc-yank
+nnoremap <silent> <Leader><space>y  :<C-u>CocList -A --normal yank<cr>
+
+:CocInstall coc-vimlsp
+:CocInstall coc-syntax
+:CocInstall coc-python
+
+pip install jedi
+pip install black
+pip install pynvim~=0.4
