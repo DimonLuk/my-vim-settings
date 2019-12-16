@@ -7,4 +7,5 @@ nnoremap <silent> <Leader><space>y  :<C-u>CocList -A --normal yank<cr>
 
 pip install jedi
 pip install black
+pip install isort
 pip install pynvim~=0.4

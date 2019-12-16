@@ -1,5 +1,3 @@
-let g:black_virtualenv = "~/.config/nvim/plugged/black_venv"
-
 call plug#begin()
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
@@ -26,6 +24,7 @@ Plug 'abaldwin88/roamer.vim'
 Plug 'python/black'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 call plug#end()
+au ColorScheme * hi Normal ctermbg=none
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
