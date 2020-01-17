@@ -216,3 +216,5 @@ alias dc="docker"
 alias dcc="docker-compose"
 alias grhm="git reset **/migrations"
 export PATH=/storage/projects/wabt/build:$PATH
+
+source ~/.profile
