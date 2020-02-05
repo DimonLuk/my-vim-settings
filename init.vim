@@ -5,9 +5,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'yuki-ycino/fzf-preview.vim'
+Plug 'cloudhead/neovim-fuzzy' "requires fzy
 Plug 'mileszs/ack.vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
@@ -143,7 +141,7 @@ nnoremap <Leader>W :W<cr>
 " toggle candidate ends
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-nnoremap <C-[> :ProjectFilesPreview<CR>
+nnoremap <C-[> :FuzzyOpen<CR>
 nnoremap <C-q> :tab sp<CR>
 nnoremap <C-c> :vsp<CR>
 nnoremap <C-h> :History<CR>
@@ -152,8 +150,7 @@ nnoremap / /\v
 nnoremap ? ?\v
 nnoremap j gj
 nnoremap k gk
-"nnoremap <C-s> :Ack! --ignore-file=is:pytags --ignore-file=is:tags --ignore-dir=~build<Space>
-nnoremap <C-s> :ProjectGrepPreview<cr>
+nnoremap <C-s> :FuzzyGrep<cr>
 nnoremap <Leader>l mq/\v^$<cr>
 nnoremap <Leader>s mq:%s/\v(\s+)$//g<cr>`q
 nnoremap <Leader>; mqA;<esc>`q
@@ -323,4 +320,3 @@ augroup java
   autocmd FileType java autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f javatags . &
 augroup END
 source ~/.config/nvim/cocc.vim
-source ~/.config/nvim/fzf_preview.vim
