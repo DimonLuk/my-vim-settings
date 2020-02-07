@@ -278,7 +278,8 @@ augroup python_config
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
   autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64' --exclude='venv' --exclude='*.cpp' --exclude='*.c' --exclude='*.out' --exclude='*.o' -f pytags 2>/dev/null . &
-  autocmd BufWritePre *.py execute ':Black'
+  "autocmd BufWritePre *.py execute ':Black'
+  command W execute ':Black' | execute ':w'
 augroup END
 
 augroup cpp_c_config
