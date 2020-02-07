@@ -218,4 +218,4 @@ alias grhm="git reset **/migrations"
 export PATH=/storage/projects/wabt/build:$PATH
 
 source ~/.profile
-setxkbmap "us,ru,ua" ",winkeys" "grp:alt_shift_toggle"
+export TERM=xterm
