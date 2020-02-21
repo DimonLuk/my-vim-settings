@@ -4,9 +4,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'cloudhead/neovim-fuzzy' "requires fzy
-Plug 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -24,6 +24,7 @@ Plug 'python/black'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'bogado/file-line'
 Plug 'Shougo/neomru.vim'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 au ColorScheme * hi Normal ctermbg=none
 set statusline+=%#warningmsg#
@@ -272,14 +273,15 @@ augroup python_config
   autocmd FileType python nnoremap <buffer> pudb mqOimport pudb; pudb.set_trace() # NOQA<esc>`q
   autocmd FileType python nnoremap <buffer> tleep mqOimport time; time.sleep(1000) # NOQA<esc>`q
   autocmd FileType python nnoremap <buffer> <Leader>log oprint(%)<esc>F%s
-  autocmd FileType python setlocal colorcolumn=89
+  autocmd FileType python setlocal colorcolumn=79
   autocmd Filetype python nnoremap <buffer><Leader>OO O<esc>O<esc>O
   autocmd Filetype python nnoremap <buffer><Leader>oo o<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
   autocmd FileType python autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='*.jsx' --exclude='*.js' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.css' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64' --exclude='venv' --exclude='*.cpp' --exclude='*.c' --exclude='*.out' --exclude='*.o' -f pytags 2>/dev/null . &
   "autocmd BufWritePre *.py execute ':Black'
-  command W execute ':Black' | execute ':w'
+  "command W execute ':Black' | execute ':w'
+  command W execute ':w' | execute 'silent !black --line-length 79 ' . expand('%:p') | execute ':e'
 augroup END
 
 augroup cpp_c_config
