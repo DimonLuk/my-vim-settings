@@ -4,9 +4,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-"Plug 'w0rp/ale'
 Plug 'cloudhead/neovim-fuzzy' "requires fzy
-"Plug 'mileszs/ack.vim'
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -15,28 +13,17 @@ Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
+Plug 'sheerun/vim-polyglot'
 Plug 'rhysd/vim-wasm'
 Plug 'pboettch/vim-cmake-syntax'
 Plug 'artur-shaik/vim-javacomplete2'
-Plug 'vim-syntastic/syntastic'
 Plug 'abaldwin88/roamer.vim'
-Plug 'python/black'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'bogado/file-line'
 Plug 'Shougo/neomru.vim'
 Plug 'davidhalter/jedi-vim'
 call plug#end()
 au ColorScheme * hi Normal ctermbg=none
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['black']
-let g:pymode_options_max_line_length = 90
+let g:python_highlight_all = 1
 
 function! GetFilepath()
   return expand("%:p")
@@ -97,7 +84,6 @@ function! s:ToggleBoolean()
   let @@ = saved_register
   let @0 = yank_register
 endfunction
-syntax enable
 set background=dark
 colorscheme solarized
 let g:lightline = {
@@ -125,10 +111,12 @@ let g:lightline = {
   \     'filepath': 'GetFilepath'
   \   }
   \ }
+filetype plugin on
+syntax on
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
 set tags=tags;
-let g:flake8_show_in_gutter=1
-let g:flake8_show_in_file=1
+"let g:flake8_show_in_gutter=1
+"let g:flake8_show_in_file=1
 " toggle candidate
 nnoremap <silent> <Leader><space>y :<C-u>CocList -A --normal yank<cr>
 nnoremap <C-\>p :buffer #<cr>
