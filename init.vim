@@ -205,6 +205,7 @@ let g:jsx_ext_required = 0
 augroup general_staff
   autocmd!
   autocmd FileType javascript,javascript.jsx,vue,python,c,cpp,java autocmd BufWritePre <buffer> execute 'normal! mq'|execute '%s/\v(\s+)$//e'|execute 'normal! `q'
+  autocmd VimResized * wincmd =
 augroup END
 
 augroup javascript_config
