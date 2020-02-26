@@ -1,6 +1,6 @@
 Create symlink to activate i3.config file
 ln -s ~/.config/nvim/i3.config ~/.config/i3/config
 
-add the /etc/suduers.d/tee file with this:
+add the /etc/sudoers.d/tee file with this:
 
 <your_user> ALL=(ALL) NOPASSWD: /usr/bin/tee
