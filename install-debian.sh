@@ -218,10 +218,14 @@ setup_i3() {
 }
 
 install_i3() {
+  echo "INSTALLING i3"
+  draw_line
   sudo apt-get install -y i3
 }
 
 configure_i3() {
+  echo "CONFIGURING i3"
+  draw_line
   rm -rf ~/.config/i3
   mkdir ~/.config/i3
   ln -s ~/.config/nvim/configs/i3config ~/.config/i3/config
