@@ -20,5 +20,4 @@ augroup java
   autocmd FileType java inoremap <buffer> <Leader>for for(%)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType java inoremap <buffer> <Leader>fir for(int i=0; i %; i++)<esc>F%mqA {<esc>o}<esc>`qs
   autocmd FileType java setlocal shiftwidth=4
-  autocmd FileType java autocmd BufWritePost <buffer> silent! !ctags -R --exclude='node_modules' --exclude='dist' --exclude='static' --exclude='__pycache__' --exclude='*.pyc' --exclude='*.html' --exclude='*.py' --exclude='~build' --exclude='*.json' --exclude='build' --exclude='lib' --exclude='lib64'--exclude='venv' --exclude='*.out' --exclude='*.js' --exclude='*.jsx' 2>/dev/null -f javatags . &
 augroup END

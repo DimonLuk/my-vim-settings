@@ -42,4 +42,3 @@ set cursorline
 hi CursorLine ctermbg=24
 set foldmethod=indent
 set foldignore=
-let g:jsx_ext_required = 0
