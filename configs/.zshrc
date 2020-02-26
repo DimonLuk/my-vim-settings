@@ -1,3 +1,6 @@
+# Add to ~/.zshrc
+# source ~/.config/nvim/configs/.zshrc
+
 function pcl(){
   find . -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
 }

@@ -1,4 +1,4 @@
-# Create symlink to ~/.config/i3/config
+# ln -s ~/.config/nvim/configs/i3config ~/.config/i3/config
 
 
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
