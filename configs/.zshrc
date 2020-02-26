@@ -178,7 +178,7 @@ function dccub(){
 function dccudb(){
   zsh -c "$(get_docker_compose_command) up -d --build $*"
 }
-function vinit(){
+function pyvinit(){
   pip install pynvim black isort jedi pylint pylint-django
 }
 setopt correct
