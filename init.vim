@@ -1,9 +1,6 @@
 call plug#begin()
-Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'cloudhead/neovim-fuzzy' "requires fzy
 Plug 'posva/vim-vue'
 Plug 'tpope/vim-surround'
@@ -14,13 +11,8 @@ Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sheerun/vim-polyglot'
-Plug 'rhysd/vim-wasm'
-Plug 'pboettch/vim-cmake-syntax'
-Plug 'artur-shaik/vim-javacomplete2'
 Plug 'abaldwin88/roamer.vim'
 Plug 'bogado/file-line'
-Plug 'Shougo/neomru.vim'
-Plug 'davidhalter/jedi-vim'
 call plug#end()
 au ColorScheme * hi Normal ctermbg=none
 let g:python_highlight_all = 1
