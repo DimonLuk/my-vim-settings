@@ -175,6 +175,9 @@ function dccub(){
 function dccudb(){
   zsh -c "$(get_docker_compose_command) up -d --build $*"
 }
+function vinit(){
+  pip install pynvim black isort jedi pylint pylint-django
+}
 setopt correct
 export EDITOR=nvim
 hash -d v=~/.config/nvim
