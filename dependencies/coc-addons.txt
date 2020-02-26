@@ -1,0 +1,4 @@
+:CocInstall coc-yank
+:CocInstall coc-vimlsp
+:CocInstall coc-syntax
+:CocInstall coc-python
