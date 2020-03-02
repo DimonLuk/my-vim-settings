@@ -182,3 +182,4 @@ bindsym $mod+F11 exec echo $((`cat /sys/class/backlight/intel_backlight/brightne
 
 exec setxkbmap 'us,ru,ua' ',winkeys' 'grp:alt_shift_toggle'
 exec start-pulseaudio-x11
+exec feh --bg-fill ~/Pictures/Pale_blue_dot.png

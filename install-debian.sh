@@ -213,8 +213,13 @@ configure_kitty() {
 
 # i3 SETUP
 setup_i3() {
+  install_i3_dependencies
   install_i3
   configure_i3
+}
+
+install_i3_dependencies() {
+  sudo apt-get install -y feh
 }
 
 install_i3() {
