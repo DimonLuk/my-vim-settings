@@ -180,6 +180,6 @@ bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 bindsym $mod+F12 exec echo $((`cat /sys/class/backlight/intel_backlight/brightness` + 400)) | sudo tee /sys/class/backlight/intel_backlight/brightness
 bindsym $mod+F11 exec echo $((`cat /sys/class/backlight/intel_backlight/brightness` - 400)) | sudo tee /sys/class/backlight/intel_backlight/brightness
 
-exec setxkbmap 'us,ru,ua' ',winkeys' 'grp:alt_shift_toggle'
+exec --no-startup-id "setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle"
 exec start-pulseaudio-x11
 exec feh --bg-fill ~/Pictures/Pale_blue_dot.png

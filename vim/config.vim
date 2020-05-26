@@ -42,3 +42,5 @@ set cursorline
 hi CursorLine ctermbg=24
 set foldmethod=indent
 set foldignore=
+let NERDTreeShowHidden=1
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']

@@ -221,7 +221,7 @@ alias tml="tmux ls"
 alias dc="docker"
 alias dcc="docker-compose"
 alias grhm="git reset **/migrations"
-export PATH=/storage/projects/wabt/build:$PATH
+export PATH=/snap/bin:/storage/projects/wabt/build:$PATH
 
 source ~/.profile
 export TERM=xterm
