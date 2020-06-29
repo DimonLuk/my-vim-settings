@@ -219,7 +219,7 @@ setup_i3() {
 }
 
 install_i3_dependencies() {
-  sudo apt-get install -y feh cmake kbdd x11-xkb-utils
+  sudo apt-get install -y feh cmake kbdd x11-xkb-utils fonts-font-awesome
   git clone https://github.com/grwlf/xkb-switch ~/.xkb-switch && cd ~/.xkb-switch && mkdir build && cd build && cmake && make && sudo make install && sudo ldconfig
 }
 
