@@ -57,3 +57,11 @@ function! s:ToggleBoolean()
   let @@ = saved_register
   let @0 = yank_register
 endfunction
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DF call s:DiffWithSaved()
