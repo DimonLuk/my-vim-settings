@@ -175,7 +175,7 @@ assign [class="Telegram"] 3
 assign [class="Slack"] 3
 
 exec firefox
-exec telegram-desktop
+exec /opt/telegram/Telegram || telegram-desktop
 
 
 # Pulse Audio controls
