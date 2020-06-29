@@ -238,6 +238,9 @@ configure_i3() {
   ln -s ~/.config/nvim/configs/i3config ~/.config/i3/config
   ln -s ~/.config/nvim/configs/.i3blocks.conf ~/.i3blocks.conf
   sudo ln -s ~/.config/nvim/configs/100-synaptics.conf /usr/share/X11/xorg.conf.d/100-synaptics.conf
+  sudo cp ~/.config/nvim/configs/80i3blocks /etc/apt/apt.conf.d/80i3blocks
+  sudo chown root:root /etc/apt/apt.conf.d/80i3blocks
+  sudo chmod 644 /etc/apt/apt.conf.d/80i3blocks
 }
 
 
