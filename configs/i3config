@@ -170,6 +170,13 @@ bindsym $mod+o exec slack
 bindsym $mod+q exec thunar
 bindsym --release $mod+p exec scrot -s '%Y-%m-%dT%H:%M:%S_$wx$h_scrot.png' -e 'mv $f ~/Pictures' # screenshot
 
+assign [class="Firefox"] 1
+assign [class="Telegram"] 3
+assign [class="Slack"] 3
+
+exec firefox
+exec telegram-desktop
+
 
 # Pulse Audio controls
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume 0 +2% #increase sound volume
