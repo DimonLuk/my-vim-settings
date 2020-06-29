@@ -225,3 +225,4 @@ export PATH=/snap/bin:/storage/projects/wabt/build:$PATH
 
 source ~/.profile
 export TERM=xterm
+export SCRIPT_DIR=~/.configs/i3blocks

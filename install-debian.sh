@@ -219,13 +219,15 @@ setup_i3() {
 }
 
 install_i3_dependencies() {
-  sudo apt-get install -y feh
+  sudo apt-get install -y feh cmake kbdd x11-xkb-utils
+  git clone https://github.com/grwlf/xkb-switch ~/.xkb-switch && cd ~/.xkb-switch && mkdir build && cd build && cmake && make && sudo make install && sudo ldconfig
 }
 
 install_i3() {
   echo "INSTALLING i3"
   draw_line
-  sudo apt-get install -y i3
+  sudo apt-get install -y i3 i3blocks
+  git clone https://github.com/vivien/i3blocks-contrib ~/.config/i3blocks
 }
 
 configure_i3() {
@@ -234,6 +236,7 @@ configure_i3() {
   rm -rf ~/.config/i3
   mkdir ~/.config/i3
   ln -s ~/.config/nvim/configs/i3config ~/.config/i3/config
+  ln -s ~/.config/nvim/configs/.i3blocks.conf ~/.i3blocks.conf
   sudo ln -s ~/.config/nvim/configs/100-synaptics.conf /usr/share/X11/xorg.conf.d/100-synaptics.conf
 }
 
