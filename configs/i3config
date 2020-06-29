@@ -196,3 +196,6 @@ bindsym $mod+Ctrl+less move workspace to output left
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 workspace_auto_back_and_forth yes
+bindsym $mod+Shift+t [class="Telegram"] focus
+bindsym $mod+Shift+b [class="Firefox"] focus
+bindsym $mod+Shift+s [class="Slack"] focus
