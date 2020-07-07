@@ -165,16 +165,16 @@ bar {
 
 # custom commands
 bindsym $mod+t exec /opt/telegram/Telegram || telegram-desktop
-bindsym $mod+c exec firefox
+bindsym $mod+c exec vivaldi
 bindsym $mod+o exec slack
 bindsym $mod+q exec thunar
 bindsym --release $mod+p exec scrot -s '%Y-%m-%dT%H:%M:%S_$wx$h_scrot.png' -e 'mv $f ~/Pictures' # screenshot
 
-assign [class="Firefox"] 1
+assign [class="Vivaldi"] 1
 assign [class="Telegram"] 3
 assign [class="Slack"] 3
 
-exec firefox
+exec vivaldi
 exec /opt/telegram/Telegram || telegram-desktop
 
 
