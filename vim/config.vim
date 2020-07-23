@@ -44,3 +44,4 @@ set foldmethod=indent
 set foldignore=
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+hi clear SignColumn
