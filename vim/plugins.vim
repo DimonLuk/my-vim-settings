@@ -11,4 +11,5 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sheerun/vim-polyglot'
 Plug 'bogado/file-line'
+Plug 'heavenshell/vim-pydocstring', {'do': 'make install'}
 call plug#end()

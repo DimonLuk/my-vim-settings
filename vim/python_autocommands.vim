@@ -29,5 +29,6 @@ augroup python_config
   autocmd Filetype python nnoremap <buffer><Leader>oo o<cr><cr>
   autocmd FileType python nnoremap <buffer><Leader>gg :call <SID>RunPython()<cr>
   autocmd FileType python nnoremap <buffer><Leader>gt :call <SID>RunPyTest()<cr>
+  autocmd FileType python nnoremap <buffer><Leader>doc <esc>:Pydocstring<cr>
   command W execute ':w' | execute 'silent !black --line-length 79 ' . expand('%:p') | execute ':e'
 augroup END
