@@ -85,17 +85,17 @@ function cprmd(){
   command_="g++$(get_build_command $@) -g -o $1.out && gdb $1.out" 
   zsh -c $command_
 }
-function cmake_build_and_make(){
-  name=""
-  if [ -z "$1" ] && name="main"
-  zsh -c "rm -rf **/build"
-  zsh -c "mkdir build"
-  current_dir="$(pwd)"
-  echo $current_dir
-  cd build
-  cmake $current_dir && make
-  cd "$current_dir"
-}
+# function cmake_build_and_make(){
+#   name=""
+#   if [ -z "$1" ] && name="main"
+#   zsh -c "rm -rf **/build"
+#   zsh -c "mkdir build"
+#   current_dir="$(pwd)"
+#   echo $current_dir
+#   cd build
+#   cmake $current_dir && make
+#   cd "$current_dir"
+# }
 function cmbr(){
   cmake_build_and_make
   ./build/"$name"
@@ -181,7 +181,7 @@ function dccudb(){
 function pyvinit(){
   pip install pynvim black isort jedi pylint pylint-django
 }
-setopt correct
+# setopt correct
 export EDITOR=nvim
 hash -d v=~/.config/nvim
 alias v=nvim
@@ -224,8 +224,10 @@ alias grhm="git reset **/migrations"
 alias gst="git status"
 alias gca="git commit --amend"
 alias gp="git push"
-export PATH=/snap/bin:/storage/projects/wabt/build:$PATH
+alias gcb="git checkout"
+alias ggcb="git checkout -b"
+# export PATH=/snap/bin:/storage/projects/wabt/build:$PATH
 
-source ~/.profile
-export TERM=xterm
-export SCRIPT_DIR=~/.configs/i3blocks
+# source ~/.profile
+# export TERM=xterm
+# export SCRIPT_DIR=~/.configs/i3blocks
