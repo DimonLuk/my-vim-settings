@@ -221,6 +221,9 @@ alias tml="tmux ls"
 alias dc="docker"
 alias dcc="docker-compose"
 alias grhm="git reset **/migrations"
+alias gst="git status"
+alias gca="git commit --amend"
+alias gp="git push"
 export PATH=/snap/bin:/storage/projects/wabt/build:$PATH
 
 source ~/.profile
